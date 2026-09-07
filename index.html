@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AC Soluções Tecnológicas — consultoria e desenvolvimento em Dynamics 365 e Power Platform. Tecnologia que simplifica. Soluções que transformam." />
+  <title>AC Soluções Tecnológicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0e2433;
+      --ink-soft: #2a4456;
+      --paper: #f3f7f5;
+      --line: #c7d5cd;
+      --teal: #0f6e6a;
+      --teal-deep: #0a524f;
+      --gold: #c9922a;
+      --white: #ffffff;
+      --muted: #5a717c;
+      --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+      --font-serif: "IBM Plex Serif", Georgia, serif;
+      --max: 1120px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button { font: inherit; }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.85rem;
+    }
+
+    .section {
+      padding: 5.5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.85rem, 3.5vw, 2.55rem);
+      max-width: 18ch;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-lead {
+      color: var(--ink-soft);
+      max-width: 42rem;
+      font-size: 1.08rem;
+    }
+
+    /* Header */
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      padding: 1.25rem 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0;
+    }
+
+    .logo-text { opacity: 0.95; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      display: inline-flex;
+      padding: 0.65rem 1rem;
+      background: var(--white);
+      color: var(--ink) !important;
+      font-weight: 600 !important;
+      text-decoration: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: transparent;
+      color: var(--white);
+      padding: 0.45rem 0.7rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      animation: hero-zoom 18s var(--ease) infinite alternate;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8, 22, 32, 0.82) 0%, rgba(8, 22, 32, 0.55) 48%, rgba(8, 22, 32, 0.28) 100%),
+        linear-gradient(0deg, rgba(8, 22, 32, 0.55) 0%, transparent 42%);
+    }
+
+    @keyframes hero-zoom {
+      from { transform: scale(1.04); }
+      to { transform: scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 8.5rem 0 4.5rem;
+      max-width: 38rem;
+      animation: rise 1s var(--ease) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-brand {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 1.15rem;
+      max-width: 12ch;
+    }
+
+    .hero-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.94);
+      margin-bottom: 0.85rem;
+      max-width: 28ch;
+    }
+
+    .hero-support {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.05rem;
+      max-width: 34ch;
+      margin-bottom: 1.8rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.25rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: transform 0.25s var(--ease), background 0.25s ease, color 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-dark {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Purpose */
+    .purpose {
+      background:
+        radial-gradient(ellipse 70% 80% at 100% 0%, #d9ebe4 0%, transparent 55%),
+        linear-gradient(180deg, #eef4f1 0%, var(--paper) 100%);
+    }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: end;
+    }
+
+    .purpose-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.55rem, 3vw, 2.1rem);
+      line-height: 1.3;
+      color: var(--ink);
+      max-width: 18ch;
+    }
+
+    .purpose-aside p {
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    .purpose-aside p:last-child { margin-bottom: 0; }
+
+    /* Services */
+    .services {
+      background: var(--white);
+    }
+
+    .service-list {
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 1rem;
+      padding: 1.35rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-num {
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      padding-top: 0.2rem;
+    }
+
+    .service-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .service-item p {
+      color: var(--ink-soft);
+      max-width: 52rem;
+    }
+
+    /* Method */
+    .method {
+      background:
+        linear-gradient(160deg, #0e2433 0%, #14384a 48%, #0f6e6a 120%);
+      color: var(--white);
+    }
+
+    .method .kicker { color: var(--gold); }
+
+    .method .section-lead { color: rgba(255, 255, 255, 0.78); }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .method-step {
+      padding: 1.35rem 1.15rem 1.45rem;
+      border-top: 2px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.04);
+      min-height: 100%;
+      transition: background 0.35s ease, transform 0.35s var(--ease);
+    }
+
+    .method-step:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .method-step span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+    }
+
+    .method-step h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .method-step p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.98rem;
+    }
+
+    /* Values */
+    .values-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      margin-bottom: 2.5rem;
+    }
+
+    .value-highlight {
+      padding: 1.6rem 1.5rem;
+      background: linear-gradient(145deg, #0f6e6a, #0a524f);
+      color: var(--white);
+    }
+
+    .value-highlight .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+
+    .value-highlight h3 {
+      font-size: 1.55rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .value-highlight p {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .values-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .value-row {
+      display: grid;
+      grid-template-columns: 11rem 1fr;
+      gap: 1.25rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .value-row strong {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+    }
+
+    .value-row p {
+      color: var(--ink-soft);
+    }
+
+    /* Mission vision */
+    .mv {
+      background: var(--white);
+    }
+
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .mv-block {
+      padding: 1.75rem 1.5rem;
+      background:
+        linear-gradient(180deg, #f7faf8, #ffffff);
+      border-left: 3px solid var(--teal);
+    }
+
+    .mv-block h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .mv-block p {
+      color: var(--ink-soft);
+    }
+
+    /* Expertise */
+    .expertise {
+      background:
+        radial-gradient(ellipse 60% 70% at 0% 100%, #d9e8ef 0%, transparent 50%),
+        var(--paper);
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.25rem;
+    }
+
+    .expertise-block h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .expertise-block ul {
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .expertise-block li {
+      color: var(--ink-soft);
+      padding-left: 0.9rem;
+      position: relative;
+      font-size: 0.98rem;
+    }
+
+    .expertise-block li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.35rem;
+      height: 0.35rem;
+      background: var(--gold);
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .contact .kicker { color: var(--gold); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: end;
+    }
+
+    .contact h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      max-width: 16ch;
+      margin-bottom: 0.9rem;
+    }
+
+    .contact p {
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 36ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-meta {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-meta span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-meta a,
+    .contact-meta strong {
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .contact-box {
+      padding: 1.6rem 1.4rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .contact-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-box p {
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-box ul {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .contact-box li {
+      padding-left: 1.1rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.98rem;
+    }
+
+    .contact-box li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #0a1a26;
+      color: rgba(255, 255, 255, 0.65);
+      padding: 1.4rem 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .site-footer a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .purpose-grid,
+      .method-grid,
+      .values-intro,
+      .mv-grid,
+      .expertise-grid,
+      .contact-grid,
+      .value-row {
+        grid-template-columns: 1fr;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 1.25rem;
+        left: 1.25rem;
+        background: rgba(8, 22, 32, 0.96);
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+      }
+
+      .nav-links.is-open { display: flex; }
+
+      .nav-toggle { display: inline-flex; }
+
+      .nav { position: relative; }
+
+      .hero-content { padding-top: 7.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .method-grid { grid-template-columns: 1fr; }
+      .service-item { grid-template-columns: 3rem 1fr; }
+      .logo-text { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="#topo" aria-label="AC Soluções Tecnológicas">
+        <span class="logo-mark">AC</span>
+        <span class="logo-text">Soluções Tecnológicas</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul class="nav-links" id="menu">
+        <li><a href="#proposito">Propósito</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#metodo">Método</a></li>
+        <li><a href="#valores">Valores</a></li>
+        <li><a class="nav-cta" href="#contato">Fale conosco</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="topo">
+    <section class="hero" aria-label="Apresentação">
+      <div class="hero-media">
+        <img
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80"
+          alt="Equipe colaborando em um ambiente de trabalho com tecnologia"
+          width="2000"
+          height="1333"
+        />
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-brand">AC Soluções Tecnológicas</p>
+          <h1 class="hero-title">Tecnologia que simplifica. Soluções que transformam.</h1>
+          <p class="hero-support">Conectando pessoas, processos e tecnologia para tornar o digital realmente útil ao negócio.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contato">Conversar sobre um projeto</a>
+            <a class="btn btn-secondary" href="#metodo">Conhecer o Método AC</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section purpose" id="proposito">
+      <div class="container purpose-grid reveal">
+        <div>
+          <span class="kicker">Propósito</span>
+          <p class="purpose-quote">Tornar a tecnologia uma facilitadora do trabalho, e não mais uma dificuldade.</p>
+        </div>
+        <div class="purpose-aside">
+          <p>
+            Muitas empresas já têm Dynamics 365, Power Automate e Power BI —
+            e ainda assim convivem com processos complicados, usuários inseguros
+            e automações que ninguém sabe manter.
+          </p>
+          <p>
+            A AC Soluções Tecnológicas entra nesse espaço: simplificar, implementar
+            com clareza e capacitar pessoas para que a solução continue gerando valor.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="servicos">
+      <div class="container">
+        <div class="reveal">
+          <span class="kicker">O que fazemos</span>
+          <h2 class="section-title">Consultoria e desenvolvimento no ecossistema Microsoft</h2>
+          <p class="section-lead">
+            Atuamos de forma híbrida entre consultoria funcional, desenvolvimento,
+            automação, dados e treinamento — especialmente em Dynamics 365 e Power Platform.
+          </p>
+        </div>
+
+        <div class="service-list">
+          <article class="service-item reveal">
+            <div class="service-num">01</div>
+            <div>
+              <h3>Consultoria funcional Dynamics 365</h3>
+              <p>Levantamento de requisitos, mapeamento de processos, desenho de solução, configuração de Sales, Customer Service, Omnichannel e Marketing / Journeys, validação com usuários e análise de impactos.</p>
+            </div>
+          </article>
+          <article class="service-item reveal">
+            <div class="service-num">02</div>
+            <div>
+              <h3>Quando o sistema padrão não basta</h3>
+              <p>Se o Dynamics ou a Power Platform não atendem do jeito que sua operação precisa, ajustamos telas, regras e comportamentos para o processo real do time — sem forçar o comercial a se adaptar a um fluxo que não faz sentido.</p>
+            </div>
+          </article>
+          <article class="service-item reveal">
+            <div class="service-num">03</div>
+            <div>
+              <h3>Automação de tarefas repetitivas</h3>
+              <p>Tiramos do time o trabalho manual que consome tempo: atualizações de registro, alertas, follow-ups e etapas que podem rodar sozinhas — com processos estáveis e fáceis de acompanhar no dia a dia.</p>
+            </div>
+          </article>
+          <article class="service-item reveal">
+            <div class="service-num">04</div>
+            <div>
+              <h3>Conexão com outros sistemas</h3>
+              <p>Se a informação está em outro lugar — ERP, site, ferramenta de consulta ou sistema interno — fazemos o CRM conversar com ele, para o time trabalhar com dados certos sem retrabalho de copiar e colar.</p>
+            </div>
+          </article>
+          <article class="service-item reveal">
+            <div class="service-num">05</div>
+            <div>
+              <h3>Power BI e indicadores</h3>
+              <p>Dashboards e KPIs conectados ao Dataverse, modelagem, Power Query, DAX e investigação de performance para decisões baseadas em dados reais.</p>
+            </div>
+          </article>
+          <article class="service-item reveal">
+            <div class="service-num">06</div>
+            <div>
+              <h3>Treinamento, ALM e troubleshooting</h3>
+              <p>Capacitação de equipes, suporte à adoção, gestão de soluções e ambientes, diagnóstico de problemas e autonomia para o cliente operar o que foi entregue.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method" id="metodo">
+      <div class="container">
+        <div class="reveal">
+          <span class="kicker">Método AC</span>
+          <h2 class="section-title">Do problema à solução — com simplicidade</h2>
+          <p class="section-lead">
+            Automatizar um processo confuso só multiplica o problema.
+            Por isso simplificamos antes de construir — e capacitamos depois de entregar.
+          </p>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-step reveal">
+            <span>01</span>
+            <h3>Entender</h3>
+            <p>Compreender o negócio e o problema real antes de falar em ferramenta.</p>
+          </article>
+          <article class="method-step reveal">
+            <span>02</span>
+            <h3>Simplificar</h3>
+            <p>Organizar e simplificar processos antes de automatizá-los.</p>
+          </article>
+          <article class="method-step reveal">
+            <span>03</span>
+            <h3>Automatizar</h3>
+            <p>Aplicar a tecnologia adequada — Dynamics, Power Platform, integrações e dados.</p>
+          </article>
+          <article class="method-step reveal">
+            <span>04</span>
+            <h3>Capacitar</h3>
+            <p>Ensinar as pessoas para que a solução continue gerando valor sem dependência eterna.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="valores">
+      <div class="container">
+        <div class="values-intro reveal">
+          <div>
+            <span class="kicker">Como trabalhamos</span>
+            <h2 class="section-title">Valores que guiam cada entrega</h2>
+            <p class="section-lead">
+              Tecnologia é meio. O que importa é o resultado para o negócio —
+              e pessoas capazes de usar e evoluir a solução no dia a dia.
+            </p>
+          </div>
+          <aside class="value-highlight">
+            <span class="tag">Diferencial</span>
+            <h3>Autonomia</h3>
+            <p>
+              Uma boa implementação não deve tornar o cliente dependente.
+              Compartilhamos conhecimento e capacitamos as pessoas para utilizarem
+              e administrarem melhor suas soluções — o oposto de “entregar e sumir”.
+            </p>
+          </aside>
+        </div>
+
+        <div class="values-list reveal">
+          <div class="value-row">
+            <strong>Simplicidade</strong>
+            <p>Tecnologia não precisa ser complicada. Buscamos soluções claras, práticas e fáceis de utilizar.</p>
+          </div>
+          <div class="value-row">
+            <strong>Resultado</strong>
+            <p>Cada solução deve resolver um problema ou gerar valor concreto para o negócio.</p>
+          </div>
+          <div class="value-row">
+            <strong>Transparência</strong>
+            <p>Comunicação clara sobre possibilidades, limitações, prazos e decisões técnicas.</p>
+          </div>
+          <div class="value-row">
+            <strong>Proximidade</strong>
+            <p>Entender o contexto e a realidade de cada cliente antes de propor uma solução.</p>
+          </div>
+          <div class="value-row">
+            <strong>Qualidade</strong>
+            <p>Soluções organizadas, confiáveis, sustentáveis e pensadas para continuar funcionando depois da entrega.</p>
+          </div>
+          <div class="value-row">
+            <strong>Evolução contínua</strong>
+            <p>Aprender, testar e aprimorar fazem parte do trabalho — porque a tecnologia muda o tempo todo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section mv" id="missao">
+      <div class="container reveal">
+        <span class="kicker">Direção</span>
+        <h2 class="section-title">Missão e visão</h2>
+        <div class="mv-grid">
+          <article class="mv-block">
+            <h3>Missão</h3>
+            <p>
+              Transformar desafios de negócio em soluções tecnológicas simples, eficientes e sustentáveis,
+              utilizando tecnologia, automação e dados para otimizar processos, facilitar o trabalho das
+              pessoas e gerar resultados reais para as empresas.
+            </p>
+          </article>
+          <article class="mv-block">
+            <h3>Visão</h3>
+            <p>
+              Ser reconhecida como uma parceira de tecnologia confiável e próxima, capaz de conectar
+              pessoas, processos e tecnologia e tornar soluções digitais acessíveis, eficientes e
+              realmente úteis para o negócio.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section expertise" id="expertise">
+      <div class="container">
+        <div class="reveal">
+          <span class="kicker">Expertise</span>
+          <h2 class="section-title">Soluções inteligentes para negócios que evoluem</h2>
+          <p class="section-lead">
+            Perfil híbrido: entendemos o negócio, configuramos a plataforma, desenvolvemos quando necessário,
+            automatizamos processos, analisamos dados e capacitamos usuários.
+          </p>
+        </div>
+
+        <div class="expertise-grid">
+          <article class="expertise-block reveal">
+            <h3>Dynamics 365 &amp; Dataverse</h3>
+            <ul>
+              <li>Sales, Customer Service e Omnichannel</li>
+              <li>Marketing / Customer Insights – Journeys</li>
+              <li>Formulários, views, BPF, segurança e equipes</li>
+              <li>Tabelas, relacionamentos e troubleshooting</li>
+            </ul>
+          </article>
+          <article class="expertise-block reveal">
+            <h3>Power Platform</h3>
+            <ul>
+              <li>Power Automate avançado e Child Flows</li>
+              <li>Power Apps model-driven</li>
+              <li>Solutions, ambientes e ALM</li>
+              <li>Integrações HTTP e APIs externas</li>
+            </ul>
+          </article>
+          <article class="expertise-block reveal">
+            <h3>Dados e adoção</h3>
+            <ul>
+              <li>Power BI, Power Query e DAX</li>
+              <li>Indicadores e análises temporais</li>
+              <li>Treinamento de equipes comerciais</li>
+              <li>Ponte entre negócio, TI e desenvolvimento</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contato">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <span class="kicker">Próximo passo</span>
+          <h2>Automatize processos. Potencialize resultados.</h2>
+          <p>
+            Conte o desafio atual — processo travado, automação instável, integração pendente
+            ou equipe que ainda não adotou o CRM. Respondemos com uma leitura objetiva e uma
+            proposta clara de atuação.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:contato@acsolucoes.com">Enviar e-mail</a>
+            <a class="btn btn-secondary" href="portfolio/index.html">Ver portfolio em PDF</a>
+          </div>
+        </div>
+
+        <aside class="contact-box reveal">
+          <h3>Conversa de 30 minutos</h3>
+          <p>Sem pitch genérico: focamos no seu processo e no que já existe no ambiente Microsoft.</p>
+          <ul>
+            <li>Diagnóstico rápido do gargalo</li>
+            <li>Opções de escopo (consultoria, build ou ambos)</li>
+            <li>Próximos passos claros</li>
+          </ul>
+          <ul class="contact-meta">
+            <li>
+              <span>Empresa</span>
+              <strong>AC Soluções Tecnológicas</strong>
+            </li>
+            <li>
+              <span>E-mail</span>
+              <a href="mailto:contato@acsolucoes.com">contato@acsolucoes.com</a>
+            </li>
+            <li>
+              <span>Atendimento</span>
+              <strong>Brasil · Remoto</strong>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> AC Soluções Tecnológicas</span>
+      <span>Tecnologia que simplifica. Soluções que transformam.</span>
+      <a href="portfolio/index.html">Portfolio PDF</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const toggle = document.querySelector(".nav-toggle");
+    const menu = document.getElementById("menu");
+    toggle?.addEventListener("click", () => {
+      const open = menu.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+
+    menu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("is-open");
+        toggle?.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      );
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add("is-visible"));
+    }
+  </script>
+</body>
+</html>

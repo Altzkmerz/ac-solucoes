@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AC Soluções Tecnológicas — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0e2433;
+      --ink-soft: #2a4456;
+      --paper: #f4f7f5;
+      --paper-deep: #e4ece7;
+      --line: #c5d4cb;
+      --teal: #0f6e6a;
+      --teal-deep: #0a524f;
+      --gold: #c9922a;
+      --white: #ffffff;
+      --muted: #5a717c;
+      --radius: 2px;
+      --page-w: 210mm;
+      --page-h: 297mm;
+      --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+      --font-serif: "IBM Plex Serif", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 120% 80% at 10% -10%, #d7ebe4 0%, transparent 55%),
+        radial-gradient(ellipse 90% 60% at 100% 0%, #dce6ef 0%, transparent 50%),
+        linear-gradient(180deg, #eef3f0 0%, var(--paper) 40%, #e8efeb 100%);
+      line-height: 1.55;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .brand, .display {
+      font-family: var(--font-serif);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    a { color: var(--teal-deep); }
+
+    .screen-bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      background: rgba(14, 36, 51, 0.92);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+    }
+
+    .screen-bar p {
+      font-size: 0.88rem;
+      opacity: 0.9;
+      max-width: 48rem;
+    }
+
+    .screen-bar button {
+      font: inherit;
+      font-weight: 600;
+      border: 0;
+      border-radius: var(--radius);
+      padding: 0.65rem 1.1rem;
+      background: var(--gold);
+      color: var(--ink);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .screen-bar button:hover { filter: brightness(1.05); }
+
+    .deck {
+      width: min(920px, calc(100% - 2rem));
+      margin: 1.5rem auto 3rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      min-height: var(--page-h);
+      background: var(--white);
+      box-shadow: 0 18px 50px rgba(14, 36, 51, 0.12);
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(15, 110, 106, 0.06), transparent 42%),
+        linear-gradient(0deg, transparent 92%, rgba(14, 36, 51, 0.04));
+      pointer-events: none;
+    }
+
+    .page-inner {
+      position: relative;
+      z-index: 1;
+      min-height: var(--page-h);
+      padding: 14mm 16mm 16mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-rule {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1.4rem;
+    }
+
+    .brand {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--teal-deep);
+    }
+
+    .page-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.7rem;
+    }
+
+    .display {
+      font-size: clamp(1.85rem, 3.8vw, 2.45rem);
+      font-weight: 700;
+      color: var(--ink);
+      max-width: 20ch;
+      margin-bottom: 0.9rem;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--ink-soft);
+      max-width: 42ch;
+      margin-bottom: 1.6rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: var(--radius);
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 280px;
+      background:
+        linear-gradient(160deg, #0e2433 0%, #16384a 42%, #0f6e6a 100%);
+      color: var(--white);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      width: 220%;
+      height: 220%;
+      left: -40%;
+      top: -60%;
+      background:
+        repeating-linear-gradient(
+          -18deg,
+          transparent 0 14px,
+          rgba(255, 255, 255, 0.035) 14px 15px
+        );
+      animation: drift 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -40px;
+      top: -40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 146, 42, 0.45), transparent 68%);
+      animation: pulse 5.5s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-40px, 24px, 0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.08); }
+    }
+
+    .hero-visual h2 {
+      position: relative;
+      z-index: 1;
+      font-size: 1.35rem;
+      font-weight: 700;
+      max-width: 16ch;
+      margin-bottom: 0.55rem;
+    }
+
+    .hero-visual p {
+      position: relative;
+      z-index: 1;
+      font-size: 0.95rem;
+      opacity: 0.88;
+      max-width: 28ch;
+    }
+
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.2rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 0.35rem 0.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .section-sub {
+      color: var(--ink-soft);
+      max-width: 58ch;
+      margin-bottom: 1.4rem;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    .diff-card {
+      border-top: 3px solid var(--teal);
+      background: linear-gradient(180deg, #f7faf8, #ffffff);
+      padding: 1rem 1.05rem 1.1rem;
+    }
+
+    .diff-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .diff-card p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .bridge {
+      margin-top: 1.35rem;
+      padding: 1.15rem 1.2rem;
+      background: var(--ink);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .bridge strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .bridge-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: flex-end;
+    }
+
+    .bridge-flow span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.55rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .services {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      gap: 0.85rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service:last-child { border-bottom: 0; }
+
+    .service-num {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--teal);
+      line-height: 1;
+      padding-top: 0.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .service h3 {
+      font-size: 1.08rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .service p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      flex: 1;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, #f7faf8, #fff);
+      border: 1px solid var(--line);
+      padding: 1rem 1.05rem;
+    }
+
+    .panel h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.65rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel ul {
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .panel li {
+      position: relative;
+      padding-left: 0.9rem;
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+    }
+
+    .panel li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.35rem;
+      height: 0.35rem;
+      background: var(--gold);
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      margin-top: 0.4rem;
+    }
+
+    .step {
+      min-height: 150px;
+      padding: 0.9rem;
+      background: var(--paper);
+      border-left: 3px solid var(--teal);
+    }
+
+    .step span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      margin-bottom: 0.45rem;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .step p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+
+    .cases {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: 8.5rem 1fr;
+      gap: 1rem;
+      padding: 0.95rem 1rem;
+      background: linear-gradient(90deg, #f3f8f5, #ffffff 35%);
+      border: 1px solid var(--line);
+    }
+
+    .case-tag {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      line-height: 1.3;
+    }
+
+    .case h3 {
+      font-size: 1.02rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .case p {
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.2rem;
+      flex: 1;
+    }
+
+    .contact-main h2 {
+      font-size: 2.1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-main p {
+      color: var(--ink-soft);
+      max-width: 36ch;
+      margin-bottom: 1.3rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .contact-list li {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .contact-list span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-list strong,
+    .contact-list a {
+      font-size: 1.05rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .offer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 1.3rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .offer h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .offer p {
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .offer ul {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .offer li {
+      padding-left: 1rem;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .offer li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .footer-note {
+      margin-top: auto;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .edit-hint {
+      outline: 2px dashed transparent;
+      transition: outline-color 0.2s;
+    }
+
+    @media screen {
+      .edit-hint:hover {
+        outline-color: rgba(15, 110, 106, 0.35);
+        background: rgba(15, 110, 106, 0.04);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid,
+      .diff-grid,
+      .two-col,
+      .process,
+      .contact-wrap,
+      .bridge,
+      .case {
+        grid-template-columns: 1fr;
+      }
+
+      .bridge-flow { justify-content: flex-start; }
+      .display { max-width: none; }
+      .page { min-height: auto; }
+      .page-inner { min-height: auto; }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      .screen-bar { display: none !important; }
+
+      body {
+        background: white;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .deck {
+        width: auto;
+        margin: 0;
+        gap: 0;
+      }
+
+      .page {
+        width: var(--page-w);
+        height: var(--page-h);
+        min-height: var(--page-h);
+        max-height: var(--page-h);
+        box-shadow: none;
+        margin: 0;
+        overflow: hidden;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .page-inner {
+        height: var(--page-h);
+        min-height: var(--page-h);
+      }
+
+      .hero-visual::before,
+      .hero-visual::after {
+        animation: none;
+      }
+
+      a { text-decoration: none; color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <div class="screen-bar">
+    <p>Portfolio pronto para PDF. Edite os campos destacados (nome da empresa e contato) e use <strong>Imprimir → Salvar como PDF</strong>.</p>
+    <button type="button" onclick="window.print()">Gerar PDF</button>
+  </div>
+
+  <main class="deck">
+    <!-- CAPA -->
+    <section class="page" aria-label="Capa">
+      <div class="page-inner">
+        <div class="top-rule">
+          <div class="brand edit-hint" contenteditable="true">AC Soluções Tecnológicas</div>
+          <div class="page-label">Portfolio 2026</div>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <span class="kicker">Dynamics 365 · Power Platform</span>
+            <h1 class="display">Tecnologia que simplifica. Soluções que transformam.</h1>
+            <p class="lead">
+              Conectando pessoas, processos e tecnologia. Ajudamos empresas a extrair mais valor
+              do ecossistema Microsoft — configurar, customizar, automatizar, integrar, medir
+              e capacitar equipes.
+            </p>
+            <div class="stack-pills" style="margin-top:0; margin-bottom:1.2rem;">
+              <span class="pill" style="border-color:var(--line); color:var(--ink-soft); background:#fff;">Sales</span>
+              <span class="pill" style="border-color:var(--line); color:var(--ink-soft); background:#fff;">Customer Service</span>
+              <span class="pill" style="border-color:var(--line); color:var(--ink-soft); background:#fff;">Marketing / Journeys</span>
+              <span class="pill" style="border-color:var(--line); color:var(--ink-soft); background:#fff;">Power Automate</span>
+              <span class="pill" style="border-color:var(--line); color:var(--ink-soft); background:#fff;">Power BI</span>
+              <span class="pill" style="border-color:var(--line); color:var(--ink-soft); background:#fff;">Integrações API</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#contato">Falar sobre um projeto</a>
+              <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="false">
+            <h2>Perfil híbrido: consultoria funcional + desenvolvimento</h2>
+            <p>Do levantamento de requisitos ao JavaScript no Dynamics, da automação ao dashboard — uma ponta a ponta.</p>
+            <div class="stack-pills">
+              <span class="pill">Dataverse</span>
+              <span class="pill">Model-driven</span>
+              <span class="pill">ALM</span>
+              <span class="pill">Treinamento</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIAL -->
+    <section class="page" aria-label="Diferencial">
+      <div class="page-inner">
+        <div class="top-rule">
+          <div class="brand edit-hint" contenteditable="true">AC Soluções Tecnológicas</div>
+          <div class="page-label">Por que nós</div>
+        </div>
+
+        <span class="kicker">O diferencial</span>
+        <h2 class="section-title">Não somos só “usuário de Dynamics” nem só “desenvolvedor”</h2>
+        <p class="section-sub">
+          Atuamos na interface entre negócio e TI: entendemos a necessidade do usuário,
+          desenhamos a solução, implementamos, investigamos falhas e capacitamos a equipe
+          para adotar o CRM no dia a dia.
+        </p>
+
+        <div class="diff-grid">
+          <article class="diff-card">
+            <h3>Visão de ponta a ponta</h3>
+            <p>Investigamos problemas atravessando usuário, Dynamics, Dataverse, fluxos, APIs e Power BI — até achar onde o processo quebra.</p>
+          </article>
+          <article class="diff-card">
+            <h3>Entrega prática</h3>
+            <p>Configuração, customização, JavaScript, Power Automate, integrações REST e relatórios — o que for necessário para o processo funcionar.</p>
+          </article>
+          <article class="diff-card">
+            <h3>Linguagem de negócio</h3>
+            <p>Traduzimos requisitos técnicos para o time comercial e de atendimento, e o contrário: da dor do usuário para a solução no sistema.</p>
+          </article>
+          <article class="diff-card">
+            <h3>Adoção real</h3>
+            <p>Implantação acompanhada de treinamento, procedimentos e suporte pós go-live para a ferramenta ser usada de verdade.</p>
+          </article>
+        </div>
+
+        <div class="bridge">
+          <div>
+            <strong>Ponte entre áreas</strong>
+            <p>Negócio ↔ TI ↔ Implementação ↔ Desenvolvimento — com alguém que conversa nos dois idiomas.</p>
+          </div>
+          <div class="bridge-flow" aria-label="Fluxo de atuação">
+            <span>Requisito</span>
+            <span>Desenho</span>
+            <span>Build</span>
+            <span>Teste</span>
+            <span>Go-live</span>
+            <span>Suporte</span>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <span>Microsoft Dynamics 365 &amp; Power Platform</span>
+          <span>Consultoria · Desenvolvimento · Automação · BI · Treinamento</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="page" id="servicos" aria-label="Serviços">
+      <div class="page-inner">
+        <div class="top-rule">
+          <div class="brand edit-hint" contenteditable="true">AC Soluções Tecnológicas</div>
+          <div class="page-label">Serviços</div>
+        </div>
+
+        <span class="kicker">Como ajudamos</span>
+        <h2 class="section-title">Serviços de desenvolvimento e consultoria</h2>
+        <p class="section-sub">
+          Pacotes pensados para empresas que já usam Dynamics / Power Platform e precisam evoluir
+          processos, corrigir gargalos ou acelerar entregas — sem perder o alinhamento com o negócio.
+        </p>
+
+        <div class="services">
+          <article class="service">
+            <div class="service-num">01</div>
+            <div>
+              <h3>Consultoria funcional Dynamics 365</h3>
+              <p>Levantamento de requisitos, mapeamento de processos, desenho de solução, configuração de Sales, Customer Service, Omnichannel e Marketing / Journeys, validação com usuários e análise de impactos.</p>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-num">02</div>
+            <div>
+              <h3>Quando o sistema padrão não basta</h3>
+              <p>Se o Dynamics ou a Power Platform não atendem do jeito que sua operação precisa, ajustamos telas, regras e comportamentos para o processo real do time — sem forçar o comercial a se adaptar a um fluxo que não faz sentido.</p>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-num">03</div>
+            <div>
+              <h3>Automação de tarefas repetitivas</h3>
+              <p>Tiramos do time o trabalho manual que consome tempo: atualizações de registro, alertas, follow-ups e etapas que podem rodar sozinhas — com processos estáveis e fáceis de acompanhar no dia a dia.</p>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-num">04</div>
+            <div>
+              <h3>Conexão com outros sistemas</h3>
+              <p>Se a informação está em outro lugar — ERP, site, ferramenta de consulta ou sistema interno — fazemos o CRM conversar com ele, para o time trabalhar com dados certos sem retrabalho de copiar e colar.</p>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-num">05</div>
+            <div>
+              <h3>Power BI e indicadores</h3>
+              <p>Dashboards e KPIs conectados ao Dataverse, modelagem, Power Query, DAX, análises temporais e investigação de performance (Import, DirectQuery, timeouts).</p>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-num">06</div>
+            <div>
+              <h3>ALM, troubleshooting e treinamento</h3>
+              <p>Soluções e ambientes (dev / teste / prod), importação e dependências, diagnóstico com XrmToolBox, segurança e permissões, capacitação de equipes e suporte pós-implantação.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPACIDADES -->
+    <section class="page" aria-label="Capacidades">
+      <div class="page-inner">
+        <div class="top-rule">
+          <div class="brand edit-hint" contenteditable="true">AC Soluções Tecnológicas</div>
+          <div class="page-label">Capacidades</div>
+        </div>
+
+        <span class="kicker">Stack e domínio</span>
+        <h2 class="section-title">Onde atuamos com profundidade</h2>
+        <p class="section-sub">
+          Experiência prática no ecossistema Microsoft, com foco em processos comerciais,
+          atendimento, automação e dados — do registro no CRM ao indicador no dashboard.
+        </p>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3>Dynamics 365 &amp; Dataverse</h3>
+            <ul>
+              <li>Sales: leads, contas, oportunidades, cotações, pedidos, BPF e equipes</li>
+              <li>Customer Service e Omnichannel: filas, roteamento e ocorrências</li>
+              <li>Marketing / Customer Insights – Journeys e campanhas</li>
+              <li>Tabelas, relacionamentos, views, formulários, subgrids e segurança</li>
+              <li>Unidades organizacionais, Account Teams e acesso a registros</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Power Platform</h3>
+            <ul>
+              <li>Power Automate avançado (expressões, loops, HTTP, Child Flows)</li>
+              <li>Power Apps model-driven integradas ao Dynamics</li>
+              <li>Dataverse: GUIDs, OData, Virtual Tables e troubleshooting</li>
+              <li>Solutions, Managed Environments e ciclo de vida</li>
+              <li>Backup / restauração e impacto entre ambientes</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Desenvolvimento &amp; integração</h3>
+            <ul>
+              <li>JavaScript em formulários (formContext, Web API, validações)</li>
+              <li>Command Bar / Ribbon Workbench (Enable / Display Rules)</li>
+              <li>Integrações REST com autenticação e refresh de token</li>
+              <li>XrmToolBox para diagnóstico de componentes e workflows</li>
+              <li>Criação automática de registros e regras sobre subgrids</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Dados, BI e pessoas</h3>
+            <ul>
+              <li>Power BI + Dataverse: modelagem, Power Query e DAX</li>
+              <li>Calendários, KPIs e análise temporal</li>
+              <li>Treinamento de equipes comerciais e suporte à adoção</li>
+              <li>Documentação de procedimentos e interface negócio / TI</li>
+              <li>Investigação de falhas em múltiplas camadas da solução</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <span>Do processo comercial ao dado no relatório</span>
+          <span>Configurar · Desenvolver · Automatizar · Medir · Ensinar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO TRABALHAMOS + CENÁRIOS -->
+    <section class="page" aria-label="Método e cenários">
+      <div class="page-inner">
+        <div class="top-rule">
+          <div class="brand edit-hint" contenteditable="true">AC Soluções Tecnológicas</div>
+          <div class="page-label">Método</div>
+        </div>
+
+        <span class="kicker">Engajamento</span>
+        <h2 class="section-title">Como costumamos trabalhar</h2>
+        <p class="section-sub">
+          Um fluxo claro, sem surpresa: entendemos o problema real, propomos o desenho,
+          implementamos com rigor e deixamos a operação pronta para seguir sozinha.
+        </p>
+
+        <div class="process">
+          <article class="step">
+            <span>01</span>
+            <h3>Descoberta</h3>
+            <p>Conversas com usuários e TI, mapeamento do processo atual e do que realmente precisa mudar.</p>
+          </article>
+          <article class="step">
+            <span>02</span>
+            <h3>Desenho</h3>
+            <p>Solução enxuta no Dynamics / Power Platform, com impactos de segurança, dados e adoção.</p>
+          </article>
+          <article class="step">
+            <span>03</span>
+            <h3>Construção</h3>
+            <p>Configuração, código, fluxos, integrações e relatórios — com teste e validação junto ao negócio.</p>
+          </article>
+          <article class="step">
+            <span>04</span>
+            <h3>Entrega</h3>
+            <p>Go-live acompanhado, treinamento, documentação prática e suporte pós-implantação.</p>
+          </article>
+        </div>
+
+        <span class="kicker" style="margin-top:1.5rem; display:inline-block;">Exemplos de atuação</span>
+        <h2 class="section-title" style="font-size:1.45rem;">Cenários em que geramos valor rápido</h2>
+
+        <div class="cases" style="margin-top:0.85rem;">
+          <article class="case">
+            <div class="case-tag">Comercial</div>
+            <div>
+              <h3>Processo de venda no Dynamics 365 Sales</h3>
+              <p>Do lead ao pedido: BPF, cotações, produtos/equipamentos, propostas, trade-in, equipes e regras que evitam retrabalho.</p>
+            </div>
+          </article>
+          <article class="case">
+            <div class="case-tag">Automação</div>
+            <div>
+              <h3>Fluxos que sustentam o CRM</h3>
+              <p>Atualização de registros, gestão de equipes e acesso, sincronização entre tabelas e orquestração com Child Flows.</p>
+            </div>
+          </article>
+          <article class="case">
+            <div class="case-tag">Integração</div>
+            <div>
+              <h3>Dados externos no Dataverse</h3>
+              <p>Consulta a APIs (ex.: enriquecimento por CNPJ), tratamento de token e gravação estruturada no Dynamics.</p>
+            </div>
+          </article>
+          <article class="case">
+            <div class="case-tag">Operação</div>
+            <div>
+              <h3>Quando “algo quebrou” e ninguém sabe onde</h3>
+              <p>Diagnóstico em permissões, Ribbon, solutions, GUIDs, workflows e performance de List Rows / Power BI.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="page" id="contato" aria-label="Contato">
+      <div class="page-inner">
+        <div class="top-rule">
+          <div class="brand edit-hint" contenteditable="true">AC Soluções Tecnológicas</div>
+          <div class="page-label">Próximo passo</div>
+        </div>
+
+        <div class="contact-wrap">
+          <div class="contact-main">
+            <span class="kicker">Vamos conversar</span>
+            <h2>Pronto para evoluir seu Dynamics 365 e Power Platform?</h2>
+            <p>
+              Envie um desafio atual — processo travado, automação instável, integração pendente,
+              relatório lento ou equipe que ainda não adotou o CRM. Respondemos com uma leitura
+              objetiva do cenário e uma proposta de atuação.
+            </p>
+
+            <ul class="contact-list">
+              <li>
+                <span>Responsável</span>
+                <strong>AC Soluções Tecnológicas</strong>
+              </li>
+              <li>
+                <span>E-mail</span>
+                <a class="edit-hint" contenteditable="true" href="mailto:contato@acsolucoes.com">contato@acsolucoes.com</a>
+              </li>
+              <li>
+                <span>Telefone / WhatsApp</span>
+                <strong class="edit-hint" contenteditable="true">+55 (00) 00000-0000</strong>
+              </li>
+              <li>
+                <span>LinkedIn</span>
+                <a class="edit-hint" contenteditable="true" href="#">linkedin.com/company/ac-solucoes</a>
+              </li>
+              <li>
+                <span>Localização</span>
+                <strong>Brasil · Atendimento remoto</strong>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="offer">
+            <div>
+              <h3>Convite para uma conversa de 30 minutos</h3>
+              <p>Sem pitch genérico: focamos no seu processo e no que já existe no ambiente Microsoft.</p>
+              <ul>
+                <li>Diagnóstico rápido do gargalo</li>
+                <li>Opções de escopo (consultoria, build ou ambos)</li>
+                <li>Próximos passos claros e mensuráveis</li>
+              </ul>
+            </div>
+            <p style="opacity:0.75; font-size:0.9rem; margin:0;">
+              Especialista híbrida em Dynamics 365 / Power Platform — consultoria, desenvolvimento, automação, BI e treinamento.
+            </p>
+          </aside>
+        </div>
+
+        <div class="footer-note">
+          <span class="edit-hint" contenteditable="true">AC Soluções Tecnológicas</span>
+          <span>Documento confidencial para uso comercial · 2026</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
