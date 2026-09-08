@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Reunião diagnóstica de 30 minutos com a AC Soluções Tecnológicas. Avaliação objetiva do seu Dynamics 365 ou Power Platform — implementação nova ou ambiente já em operação." />
+  <title>Reunião diagnóstica de 30 minutos | AC Soluções Tecnológicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0e2433;
+      --ink-soft: #2a4456;
+      --paper: #f3f7f5;
+      --line: #c7d5cd;
+      --teal: #0f6e6a;
+      --teal-deep: #0a524f;
+      --gold: #c9922a;
+      --white: #ffffff;
+      --muted: #5a717c;
+      --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+      --font-serif: "IBM Plex Serif", Georgia, serif;
+      --max: 1120px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.85rem;
+    }
+
+    .section { padding: 5rem 0; }
+
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      padding: 1.25rem 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0;
+    }
+
+    .logo-text { opacity: 0.95; }
+
+    .nav-home {
+      color: rgba(255, 255, 255, 0.88);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .nav-home:hover { color: var(--white); }
+
+    .hero {
+      position: relative;
+      min-height: 92svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      animation: hero-zoom 18s var(--ease) infinite alternate;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8, 22, 32, 0.84) 0%, rgba(8, 22, 32, 0.58) 50%, rgba(8, 22, 32, 0.3) 100%),
+        linear-gradient(0deg, rgba(8, 22, 32, 0.55) 0%, transparent 42%);
+    }
+
+    @keyframes hero-zoom {
+      from { transform: scale(1.04); }
+      to { transform: scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 8.5rem 0 4.25rem;
+      max-width: 40rem;
+    }
+
+    .hero-brand {
+      font-size: clamp(2.2rem, 5.2vw, 3.35rem);
+      max-width: 14ch;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-support {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.08rem;
+      max-width: 38ch;
+      margin-bottom: 1.8rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.25rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: transform 0.25s var(--ease), background 0.25s ease, color 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .btn-dark {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .audience {
+      background:
+        radial-gradient(ellipse 70% 80% at 100% 0%, #d9ebe4 0%, transparent 55%),
+        linear-gradient(180deg, #eef4f1 0%, var(--paper) 100%);
+    }
+
+    .section-title {
+      font-size: clamp(1.85rem, 3.5vw, 2.45rem);
+      max-width: 18ch;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-lead {
+      color: var(--ink-soft);
+      max-width: 40rem;
+      font-size: 1.08rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.15rem;
+      margin-top: 2.4rem;
+    }
+
+    .card {
+      padding: 1.5rem 1.3rem 1.6rem;
+      background: var(--white);
+      border-top: 3px solid var(--teal);
+    }
+
+    .card span {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.7rem;
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .card p {
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+
+    .meeting {
+      background: var(--white);
+    }
+
+    .meeting-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2.75rem;
+      align-items: start;
+    }
+
+    .steps {
+      list-style: none;
+      display: grid;
+      gap: 0;
+      margin-top: 1.6rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      gap: 0.85rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .steps strong {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .steps p { color: var(--ink-soft); }
+
+    .step-num {
+      font-weight: 600;
+      color: var(--teal);
+      padding-top: 0.15rem;
+    }
+
+    .aside-box {
+      padding: 1.7rem 1.4rem;
+      background: linear-gradient(145deg, #0f6e6a, #0a524f);
+      color: var(--white);
+    }
+
+    .aside-box .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+
+    .aside-box h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .aside-box p {
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 1.15rem;
+    }
+
+    .aside-box ul {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .aside-box li {
+      padding-left: 1.1rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.98rem;
+    }
+
+    .aside-box li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .method {
+      background:
+        linear-gradient(160deg, #0e2433 0%, #14384a 48%, #0f6e6a 120%);
+      color: var(--white);
+    }
+
+    .method .kicker { color: var(--gold); }
+
+    .method .section-lead { color: rgba(255, 255, 255, 0.78); }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.4rem;
+    }
+
+    .method-step {
+      padding: 1.3rem 1.1rem 1.4rem;
+      border-top: 2px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .method-step span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .method-step h3 {
+      font-size: 1.12rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .method-step p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.96rem;
+    }
+
+    .contact {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .contact .kicker { color: var(--gold); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: end;
+    }
+
+    .contact h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.55rem);
+      max-width: 16ch;
+      margin-bottom: 0.9rem;
+    }
+
+    .contact p {
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 38ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-meta {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-meta span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-meta a,
+    .contact-meta strong {
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .contact-box {
+      padding: 1.6rem 1.4rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .contact-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-box p { margin-bottom: 0; }
+
+    .site-footer {
+      background: #0a1a26;
+      color: rgba(255, 255, 255, 0.65);
+      padding: 1.4rem 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .site-footer a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .card-grid,
+      .meeting-grid,
+      .method-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-grid { grid-template-columns: 1fr 1fr; }
+
+      .logo-text { display: none; }
+
+      .hero-content { padding-top: 7.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .method-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="../index.html" aria-label="AC Soluções Tecnológicas">
+        <span class="logo-mark">AC</span>
+        <span class="logo-text">Soluções Tecnológicas</span>
+      </a>
+      <a class="nav-home" href="../index.html">Voltar ao site</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Reunião diagnóstica">
+      <div class="hero-media">
+        <img
+          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2000&q=80"
+          alt="Profissionais em reunião de diagnóstico em um ambiente de trabalho"
+          width="2000"
+          height="1333"
+        />
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <span class="kicker" style="color: var(--gold);">Reunião de 30 minutos</span>
+          <h1 class="hero-brand">Uma conversa objetiva sobre o seu Dynamics 365.</h1>
+          <p class="hero-support">
+            Seja uma implementação do zero ou um ambiente Microsoft já em operação,
+            descreva o desafio. Retornamos com uma leitura clara do cenário e uma proposta de atuação.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:contato@solucoestecac.com.br?subject=Reuni%C3%A3o%20diagn%C3%B3stica%20de%2030%20minutos&body=Ol%C3%A1,%0D%0A%0D%0AGostaria%20de%20agendar%20a%20reuni%C3%A3o%20diagn%C3%B3stica.%0D%0A%0D%0AEmpresa:%0D%0ADesafio%20atual:%0D%0A">
+              Solicitar a reunião
+            </a>
+            <a class="btn btn-secondary" href="#reuniao">Como funciona</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section audience" id="para-quem">
+      <div class="container">
+        <span class="kicker">Para quem é</span>
+        <h2 class="section-title">Quando essa conversa faz sentido</h2>
+        <p class="section-lead">
+          Atuação híbrida entre consultoria funcional e desenvolvimento:
+          Dynamics 365, Power Platform, automações, integrações e capacitação —
+          em projetos novos ou em instâncias já implantadas.
+        </p>
+
+        <div class="card-grid">
+          <article class="card">
+            <span>01</span>
+            <h3>Implementação inicial</h3>
+            <p>Você vai começar no Dynamics 365 ou na Power Platform e precisa de desenho funcional, configuração e entrada em produção com o time preparado.</p>
+          </article>
+          <article class="card">
+            <span>02</span>
+            <h3>Ambiente já em uso</h3>
+            <p>A plataforma existe, mas os processos ficaram complexos, a adesão caiu ou o dia a dia operacional não reflete o que foi implantado.</p>
+          </article>
+          <article class="card">
+            <span>03</span>
+            <h3>Automação e dados</h3>
+            <p>Há retrabalho entre sistemas, fluxos frágeis ou indicadores que não sustentam decisão. Falta orquestração e clareza no Dataverse.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section meeting" id="reuniao">
+      <div class="container meeting-grid">
+        <div>
+          <span class="kicker">A reunião</span>
+          <h2 class="section-title">O que acontece em 30 minutos</h2>
+          <p class="section-lead">
+            Sem apresentação genérica de portfólio. O foco é o processo de negócio
+            e o ambiente Microsoft atual — para sair da conversa com próximos passos priorizados.
+          </p>
+          <ol class="steps">
+            <li>
+              <span class="step-num">01</span>
+              <div>
+                <strong>Leitura do cenário</strong>
+                <p>Empresa, interlocutores, o que já está implantado e onde o trabalho trava hoje.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">02</span>
+              <div>
+                <strong>Causa raiz, não só o sintoma</strong>
+                <p>Separar o que é configuração, processo, adoção ou integração — antes de propor ferramenta.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">03</span>
+              <div>
+                <strong>Escopo possível</strong>
+                <p>Consultoria, implementação, personalização, automação ou capacitação — o que cabe neste momento.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <aside class="aside-box">
+          <span class="tag">Sem compromisso de projeto</span>
+          <h3>Diagnóstico, não proposta genérica</h3>
+          <p>
+            A reunião existe para decidir se faz sentido seguir juntos —
+            e, se fizer, com que recorte. Transparência sobre limitações, prazos e riscos desde o início.
+          </p>
+          <ul>
+            <li>Brasil · atendimento remoto</li>
+            <li>Dynamics 365, Dataverse e Power Platform</li>
+            <li>Resposta por e-mail após o pedido de conversa</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section method" id="metodo">
+      <div class="container">
+        <span class="kicker">Método AC</span>
+        <h2 class="section-title">Entender e simplificar antes de automatizar</h2>
+        <p class="section-lead">
+          Automatizar um processo pouco definido amplifica ineficiência.
+          Por isso a conversa começa no negócio — e só depois na plataforma.
+        </p>
+        <div class="method-grid">
+          <article class="method-step">
+            <span>01</span>
+            <h3>Entender</h3>
+            <p>Mapear o problema e os interlocutores antes de selecionar a tecnologia.</p>
+          </article>
+          <article class="method-step">
+            <span>02</span>
+            <h3>Simplificar</h3>
+            <p>Reduzir complexidade desnecessária antes de desenhar fluxos e customizações.</p>
+          </article>
+          <article class="method-step">
+            <span>03</span>
+            <h3>Automatizar</h3>
+            <p>Aplicar Dynamics, Power Platform e integrações na medida certa para o cenário.</p>
+          </article>
+          <article class="method-step">
+            <span>04</span>
+            <h3>Capacitar</h3>
+            <p>Transferir conhecimento para a operação manter e evoluir a solução.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contato">
+      <div class="container contact-grid">
+        <div>
+          <span class="kicker">Próximo passo</span>
+          <h2>Peça a reunião diagnóstica.</h2>
+          <p>
+            Escreva em poucas linhas a empresa e o desafio atual.
+            Retornamos para agendar os 30 minutos e alinhar o que precisa estar à mesa.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:contato@solucoestecac.com.br?subject=Reuni%C3%A3o%20diagn%C3%B3stica%20de%2030%20minutos&body=Ol%C3%A1,%0D%0A%0D%0AGostaria%20de%20agendar%20a%20reuni%C3%A3o%20diagn%C3%B3stica.%0D%0A%0D%0AEmpresa:%0D%0ADesafio%20atual:%0D%0A">
+              Enviar e-mail
+            </a>
+            <a class="btn btn-secondary" href="../portfolio/index.html">Ver portfólio</a>
+          </div>
+        </div>
+        <aside class="contact-box">
+          <h3>Contato</h3>
+          <ul class="contact-meta">
+            <li>
+              <span>E-mail</span>
+              <a href="mailto:contato@solucoestecac.com.br">contato@solucoestecac.com.br</a>
+            </li>
+            <li>
+              <span>Empresa</span>
+              <strong>AC Soluções Tecnológicas</strong>
+            </li>
+            <li>
+              <span>Atendimento</span>
+              <strong>Brasil · Remoto</strong>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> AC Soluções Tecnológicas</span>
+      <a href="../index.html">Site institucional</a>
+      <a href="../portfolio/index.html">Portfólio PDF</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
